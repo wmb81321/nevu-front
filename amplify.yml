@@ -1,0 +1,37 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "API_URL=$API_URL" >> .env
+        - echo "SECRET_KEY=$SECRET_KEY" >> .env
+        - echo "COGNITO_ID=$COGNITO_ID" >> .env
+        - echo "POOL_ID=$POOL_ID" >> .env
+        - echo "TORUS_PROJECT_ID=$TORUS_PROJECT_ID" >> .env
+        - echo "TORUS_APP_VERIFIER=$TORUS_APP_VERIFIER" >> .env
+        - echo "TORUS_DOMAIN=$TORUS_DOMAIN" >> .env
+        - echo "TORUS_NETWORK=$TORUS_NETWORK" >> .env
+        - echo "INTERCOM_API_BASE=$INTERCOM_API_BASE" >> .env
+        - echo "INTERCOM_APP_ID=$INTERCOM_APP_ID" >> .env
+        - echo "INTERCOM_SECRET=$INTERCOM_SECRET" >> .env
+        - echo "SECRET_KEY=$SECRET_KEY" >> .env
+        - echo "BLOCKCHAIN_USDC_ID=$BLOCKCHAIN_USDC_ID" >> .env
+        - echo "BLOCKCHAIN_COPT_ID=$BLOCKCHAIN_COPT_ID" >> .env
+        - echo "ONEINCH_BASE_URL=$ONEINCH_BASE_URL" >> .env
+        - echo "ONEINCH_MAIN_PROTOCOL=$ONEINCH_MAIN_PROTOCOL" >> .env
+        - echo "BLOCKCHAIN_USDC_ADDRESS=$BLOCKCHAIN_USDC_ADDRESS" >> .env
+        - echo "BLOCKCHAIN_USDT_ADDRESS=$BLOCKCHAIN_USDT_ADDRESS" >> .env
+        - echo "BLOCKCHAIN_COPT_ADDRESS=$BLOCKCHAIN_COPT_ADDRESS" >> .env
+        - echo "BLOCKCHAIN_MATIC_ADDRESS=$BLOCKCHAIN_MATIC_ADDRESS" >> .env
+        - echo "SERVER_API_URL=$API_URL" >> .env
+        - npm install
+    build:
+      commands:
+        - npm run webapp:build:prod
+  artifacts:
+    baseDirectory: target/classes/static/
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
